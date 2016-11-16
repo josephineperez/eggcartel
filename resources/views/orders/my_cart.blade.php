@@ -16,6 +16,15 @@
                 
                 <div class="panel-body">
                 	<div class="col-xs-12">
+
+                    {{ $order }}
+
+
+                    {!! Form::model($order, ['method' => 'POST', 
+                    'route' => ['orders.processing', $order->id] ]) !!}
+
+
+
                 		<h3>Breakfast Bowl (<sup>$</sup>6)</h3>
                         <h4>Scrambled Eggs, No Cheese, Veggie Sausage, Hash Browns, Mushrooms, Arugula</h4>
                         <a>Edit Meal</a> <a class="remove">Remove</a><hr>
@@ -46,7 +55,11 @@
 <div class="container-fluid">
     <div class="row white-bg my_cart text-center">
         <a href="{{ url('orders/create') }}" class="btn btn-success">+ Add Another Meal</a>
-        <a href="{{ url('orders/confirmation') }}" class="btn btn-primary col-xs-12">Place Order Now</a>
+    {!! Form::submit('Place Order Now', ['class' => 'btn btn-primary btn-block']) !!}
+    {!! Form::close() !!}
+
+
+        </a>
     </div>
 </div>
 

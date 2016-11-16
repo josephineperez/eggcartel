@@ -70,7 +70,8 @@ class OrdersController extends Controller
 
         // make new order
         $order = Order::create([
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'confirmed' => 0
         ]);
 
         $item = Item::create([
@@ -91,23 +92,7 @@ class OrdersController extends Controller
         $item->toppings()->attach($topping);
             $item->save();
 
-
-        dd($item);
-         
-
-
-        // $request = $this->saveFiles($request);
-        // $cat = Cat::create($request->all());
-
-        //  // Append Cats/States
-        // $toys = $request->get('toys');
-        // if(is_array($toys)) {
-        //     foreach ($toys as $toy) {
-        //         $cat->toys()->attach($toy);
-        //     }
-        // }
-
-        return redirect()->route('orders.index');
+        return redirect()->route('cart',  ['id' => $order->id]);
     }
 
     /**
@@ -116,15 +101,15 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $enum_color = Cat::$enum_color;
+    // public function edit($id)
+    // {
+    //     $enum_color = Cat::$enum_color;
 
-        $toys = Toy::orderBy('name')->get();
+    //     $toys = Toy::orderBy('name')->get();
 
-        $cat = Cat::findOrFail($id);
-        return view('cats.edit', compact('cat', 'enum_color','toys'));
-    }
+    //     $cat = Cat::findOrFail($id);
+    //     return view('cats.edit', compact('cat', 'enum_color','toys'));
+    // }
 
     /**
      * Update Cat in storage.
@@ -133,17 +118,17 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCatsRequest $request, $id)
-    {
-        $request = $this->saveFiles($request);
-        $cat = Cat::findOrFail($id);
-        $cat->update($request->all());
+    // public function update(UpdateCatsRequest $request, $id)
+    // {
+    //     $request = $this->saveFiles($request);
+    //     $cat = Cat::findOrFail($id);
+    //     $cat->update($request->all());
 
-        $cat->toys()->detach();
-        $cat->toys()->attach($request->get('toys'));
+    //     $cat->toys()->detach();
+    //     $cat->toys()->attach($request->get('toys'));
 
-        return redirect()->route('cats.index');
-    }
+    //     return redirect()->route('cats.index');
+    // }
 
    
 
@@ -152,19 +137,19 @@ class OrdersController extends Controller
 
     public function show($id)
     {
-        $order = Order::with('user')
-                       ->with('items.eggs')
-                       ->with('items.base')
-                       ->with('items.cheeses')
-                       ->with('items.meats')
-                       ->with('items.toppings')
-                       ->findOrFail($id);
+        // $order = Order::with('user')
+        //                ->with('items.eggs')
+        //                ->with('items.base')
+        //                ->with('items.cheeses')
+        //                ->with('items.meats')
+        //                ->with('items.toppings')
+        //                ->findOrFail($id);
 
         // return $order;
 
        
 
-        return view('orders.show', compact('order'));
+        // return view('orders.show', compact('order'));
     }
 
 
@@ -180,5 +165,49 @@ class OrdersController extends Controller
 
         return redirect()->route('orders.index');
     }
+
+
+
+    public function cart($id)
+    {
+
+
+         // $users = User::with('orders.items.eggs.bases')->get();
+
+         // $users = User::with('orders.items.eggs')
+         //               ->with('orders.items.base')
+         //               ->with('orders.items.cheeses')
+         //               ->with('orders.items.meats')
+         //               ->with('orders.items.toppings')
+         //               ->get();
+
+         // $items = Item::with('base')->get();
+
+
+
+        $order = Order::with('items.eggs')
+                    ->with('items.base')
+                    ->with('items.cheeses')
+                    ->with('items.meats')
+                    ->with('items.toppings')
+                    ->findOrFail($id);
+
+        return view('orders.my_cart', compact('order'));
+    }
+
+    public function processing($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->confirmed = 1;
+        $order->save();
+        return redirect()->route('orders.summary',  ['id' => $order->id]);
+    }
+
+    public function summary($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('orders.summary', compact('order'));
+    }
+
 
 }

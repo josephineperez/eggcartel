@@ -24,7 +24,8 @@ class OrderSeed extends Seeder
         $user = User::where('name', '=', 'Trevor Greenleaf')->first();
 
         Order::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'confirmed'=>0
         ]);
     }
 }
