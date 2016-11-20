@@ -16,6 +16,10 @@ use App\Item;
     return view('home');
  });
 
+   Route::get('/my_cart', function () {
+    return view('my_cart');
+ });
+
  
 Auth::routes();
 

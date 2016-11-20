@@ -16,7 +16,7 @@ class CreateOrders extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->boolean('confirmed');
+            $table->boolean('confirmed')->default(0);
             $table->timestamps();
         });
     }

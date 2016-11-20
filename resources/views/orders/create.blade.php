@@ -27,11 +27,19 @@
             @foreach($bases as $base)
             <label>
                 <input type="radio" name="base" id="optionsRadios1" value="{{ $base->id }}" class="hide">
-                    <img src="{{ asset ('images/'.$base->name .'.png') }}" alt="Base Icon">
+                <div class="row">
+                <div class="col-xs-2">
+                    <img src="{{ asset ('images/'.$base->name .'.png') }}" alt="Base Icon" >
+                </div>
+                <div class="col-xs-8 center">
                      {{ $base->name }} (${{ $base->price }})
+                </div>
+                <div class="col-xs-2 right">
                      <a class="btn btn-success relative">
                      <span class="plus-position">+</span>
                      </a>
+                </div>
+                </div>
               </label><hr>
             @endforeach
         </div>
@@ -45,9 +53,19 @@
             @foreach($eggs as $egg)
             <label>
                 <input type="radio" name="egg" id="optionsRadios2" value="{{ $egg->id }}" class="hide">
-                <img src="{{ asset ('images/'.$egg->style .'.png') }}" alt="Egg Icon">
-                {{ $egg->style }}
-                <a class="btn btn-success">+</a>
+                <div class="row">
+                <div class="col-xs-2">
+                    <img src="{{ asset ('images/'.$egg->style .'.png') }}" alt="Egg Icon">
+                </div>
+                <div class="col-xs-8 center">
+                    {{ $egg->style }}
+                </div>
+                <div class="col-xs-2 right">
+                    <a class="btn btn-success relative">
+                        <span class="plus-position">+</span>
+                    </a>
+                </div>
+                </div>
               </label><hr>
             @endforeach
         </div>
@@ -60,8 +78,16 @@
             @foreach($cheeses as $cheese)
             <label>
                 <input type="radio" name="cheese" id="optionsRadios3" value="{{ $cheese->id }}" class="hide">
+                <div class="row">
+                <div class="col-xs-9 center">
                 {{ $cheese->name }}
-                <a class="btn btn-success">+</a>
+                </div>
+                <div class="col-xs-2 right">
+                <a class="btn btn-success relative">
+                    <span class="plus-position">+</span>
+                </a>
+                </div>
+                </div>
               </label><hr>
             @endforeach
         </div>
@@ -75,9 +101,19 @@
             @foreach($meats as $meat)
             <label>
                 <input type="radio" name="meat" id="optionsRadios4" value="{{ $meat->id }}" class="hide">
-                <img src="{{ asset ('images/'.$meat->name .'.png') }}" alt="Sandwich Icon">
-                {{ $meat->name }}
-                <a class="btn btn-success">+</a>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="{{ asset ('images/'.$meat->name .'.png') }}" alt="Sandwich Icon">
+                    </div>
+                <div class="col-xs-8 center">
+                    {{ $meat->name }}
+                </div>
+                <div class="col-xs-2 right">
+                    <a class="btn btn-success relative">
+                        <span class="plus-position">+</span>
+                    </a>
+                </div>
+                </div>
               </label><hr>
             @endforeach
         </div>
@@ -91,8 +127,16 @@
             @foreach($toppings as $topping)
             <label>
                 <input type="checkbox" name="topping" id="optionsRadios5" value="{{ $topping->id }}" class="hide">
-                {{ $topping->name }}
-                <a class="btn btn-success">+</a>
+                <div class="row">
+                    <div class="col-xs-9 center">
+                        {{ $topping->name }}
+                    </div>
+                <div class="col-xs-2 right">
+                    <a class="btn btn-success relative">
+                        <span class="plus-position">+</span>
+                    </a>
+                </div>
+                </div>
               </label><hr>
             @endforeach
         </div>

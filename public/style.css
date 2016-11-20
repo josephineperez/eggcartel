@@ -221,6 +221,17 @@
 	left: 7px;
 }
 
+.create .center {
+	text-align: center;
+	margin-top: 5%;
+}
+
+.create .right {
+	margin-top: 4%;
+	display: block;
+	float: right;
+}
+
 /* LOCATION PAGE */
 .location h3 {
 	font-family: "mr-eaves-xl-modern", sans-serif;
