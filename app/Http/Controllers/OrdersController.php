@@ -153,4 +153,35 @@ class OrdersController extends Controller
         return redirect()->route('orders.index');
     }
 
+    public function cart($id)
+    {
+
+        $order = Order::with('items.eggs')
+                    ->with('items.base')
+                    ->with('items.cheeses')
+                    ->with('items.meats')
+                    ->with('items.toppings')
+                    ->findOrFail($id);
+
+        return view('orders.my_cart', compact('order'));
+    }
+
+    public function processing($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->confirmed = 1;
+        $order->save();
+        return redirect()->route('orders.summary',  ['id' => $order->id]);
+    }
+
+    public function summary($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('orders.summary', compact('order'));
+    }
+
+
+
+
+
 }

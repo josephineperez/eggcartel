@@ -17,19 +17,64 @@
                 <div class="panel-body">
                 	<div class="col-xs-12">
 
-                    {{ $order }}
+                    @foreach($order->items  as $item)
+
+                        <h3><strong>
+                        @if($item->for_person )
+                             {{ $item->for_person }}
+                        @endif
+                        </strong></h3>
+
+                        <h3>
+                        @if($item->base )
+                             Breakfast {{ $item->base->name }}
+                        @endif 
+
+
+                        @if($item->base )
+                             (<sup>$</sup>{{ $item->base->price }})
+                        @endif
+                        </h3>
+
+                        <h4>
+                        @if($item->eggs )
+                             {{ $item->eggs[0]->style }} Eggs,
+                        @endif  
+                        
+                        @if($item->cheeses )
+                             {{ $item->cheeses[0]->name }},
+                        @endif
+
+                        @if($item->meats )
+                             {{ $item->meats[0]->name }},
+                        @endif  
+
+                        @if($item->toppings )
+                        @foreach($item->toppings  as $topping)
+                           
+                                 {{ $topping->name }}
+                           
+                        @endforeach
+                        @endif
+                        </h4>  
+
+                        <hr>  
+
+
+                    @endforeach
+
+                    <!-- <a>Edit Meal</a> <a class="remove">Remove</a><hr> -->
+                    <h5>Tax <span>Calculated at checkout</span></h5>
+                    <h3>Subtotal <span>
+                        @if($item->base )
+                             <sup>$</sup>{{ $item->base->price }}.00
+                        @endif
+                    </span></h3>
 
 
                     {!! Form::model($order, ['method' => 'POST', 
                     'route' => ['orders.processing', $order->id] ]) !!}
 
-
-
-                		<h3>Breakfast Bowl (<sup>$</sup>6)</h3>
-                        <h4>Scrambled Eggs, No Cheese, Veggie Sausage, Hash Browns, Mushrooms, Arugula</h4>
-                        <a>Edit Meal</a> <a class="remove">Remove</a><hr>
-                        <h5>Tax <span>Calculated at checkout</span></h5>
-                        <h3>Subtotal <span><sup>$</sup>6.00</span></h3>
                 	</div>
                 </div>
             </div>

@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('orders/cart/{id}/processing', 'OrdersController@processing')->name('orders.processing');
   Route::get('orders/cart/{id}/summary', 'OrdersController@summary')->name('orders.summary');
 
-	Route::resource('orders', 'OrdersController');
+Route::resource('orders', 'OrdersController');
 
 });
 

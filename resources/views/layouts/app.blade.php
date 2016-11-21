@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Cats manage the world!!!</title>
+    <title>Egg Cartel</title>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">

@@ -30,8 +30,8 @@
                     <div class="row">
                     <div class="col-xs-12">
                         <a href="{{ url('orders/create') }}" class="btn btn-primary col-xs-12">Order Now</a>
-                        <a href="{{ url('location') }}" class="btn btn-primary col-xs-12">Location</a>
-                        <a href="{{ url('my_cart') }}" class="btn btn-primary col-xs-12">My Cart</a>
+                       <!--  <a href="{{ url('location') }}" class="btn btn-primary col-xs-12">Location</a> -->
+                        <!-- <a href="{{ url('orders/my_cart') }}" class="btn btn-primary col-xs-12">My Cart</a> -->
                     </div>
                     </div>
                 </div>
